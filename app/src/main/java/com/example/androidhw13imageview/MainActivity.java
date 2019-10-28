@@ -10,7 +10,8 @@ import android.widget.ImageView;
 import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
-    int imagenum;
+    float imagenum;
+    int transint;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -24,12 +25,20 @@ public class MainActivity extends AppCompatActivity {
         ch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (!("".equals(ignum.getText().toString()))) {
-                    imagenum = Integer.parseInt(ignum.getEditableText().toString());
-                    imageView.setImageResource(image[imagenum - 1]);
-                }
-                else if(imagenum>10 ||imagenum<1){
+
+                if (!("".equals(ignum.getText().toString()))  ) {
+                    imagenum = Float.parseFloat(ignum.getEditableText().toString());
+                    transint= (int)imagenum;
+                    if(imagenum-transint ==0) {
+                        imageView.setImageResource(image[transint - 1]);
+                    }
+                    }
+                 if(imagenum>10 ||imagenum<1){
                     Toast back=Toast.makeText(MainActivity.this,"沒有這個圖片!",Toast.LENGTH_SHORT);
+                    back.show();
+                }
+                else if(ignum.getText().toString().contains(".")){
+                    Toast back=Toast.makeText(MainActivity.this,"只能輸入整數!",Toast.LENGTH_SHORT);
                     back.show();
                 }
             }
